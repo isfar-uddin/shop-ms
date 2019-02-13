@@ -1,0 +1,19 @@
+{
+  "name": "shop-ms",
+  "version": "1.0.0",
+  "description": "This is a repository of shop management system.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isfar-uddin/shop-ms.git"
+  },
+  "author": "\"\"\u001b",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isfar-uddin/shop-ms/issues"
+  },
+  "homepage": "https://github.com/isfar-uddin/shop-ms#readme"
+}
