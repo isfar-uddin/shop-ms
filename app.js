@@ -1,8 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+
 //Load Product Route
 const Products = require('./app/routes/api/product');
+//Load Category Route
+const Category = require('./app/routes/api/category');
 
 const app = express();
 
@@ -19,8 +22,11 @@ mongoose.connect(db, {useNewUrlParser: true})
 .catch(err => console.log(err))
 
 
-//Use Routes
-app.use("/api/products", Products)
+//Use Product Routes
+app.use("/api/products", Products);
+
+//Use Category Routes
+app.use("/api/categorys", Category);
 
 
 const port = process.env.PORT || 5000;

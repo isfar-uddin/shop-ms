@@ -18,4 +18,4 @@ const CategorySchema = new Schema({
     }
 })
 
-module.exports = Product = mongoose.model("Category", CategorySchema)
+module.exports = Category = mongoose.model("Category", CategorySchema)
