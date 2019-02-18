@@ -26,4 +26,11 @@ router.get("/:id", categoryController.categoryDetails);
 // @access Private
 router.put("/:id", categoryController.updateCategory);
 
+
+// @route Delete api/category/:id
+// @desc Delete category
+// @access Private
+router.delete("/:id", categoryController.delateCategory);
+
+
 module.exports = router;

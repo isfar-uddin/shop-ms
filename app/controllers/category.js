@@ -45,9 +45,32 @@ const updateCategory = (req, res) => {
     })
 }
 
+const delateCategory = (req, res) => {
+    Category.findByIdAndRemove(req.params.id)
+    .then(category=> {
+        if(!category) {
+            return res.status(404).json({
+                message: "Category not found with id " + req.params.id
+            })
+        }
+        res.json({message: "Category deleted successfully!"})
+    }).catch(err=> {
+        if(err.kind === "ObjectId" || err.name=== "NotFound" ) {
+            return res.status(404).json({
+                message: "Category not found with id " + req.params.id
+            })
+        }
+        return res.status(500).json({
+            message: "Could not delete category with id" + req.params.id
+        })
+    })
+}
+
+
 module.exports = {
     getAllCategory: getAllCategory,
     addCategory: addCategory,
     categoryDetails: categoryDetails,
-    updateCategory: updateCategory
+    updateCategory: updateCategory,
+    delateCategory: delateCategory
 }

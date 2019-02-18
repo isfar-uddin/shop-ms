@@ -44,14 +44,26 @@ const productDetails = (req, res) => {
     .catch(err=> res.status(404).json({err}))
 }
 
-
 //Update Product
 const updateProduct = (req, res) => {
-    Product.findByIdAndUpdate(req.params.id, req.body, {new: true},(err, user) => {
-        if (err) return res.status(500).json(err);
-        res.status(200).json({status: 'success'});
-    });
+    Product.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(product=> {
+        if(!product) {
+            return res.status(404).json({message: "Product not found with id "+ req.params.id})
+        }
+        res.json(product)
+    }).catch(err=> {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).json({
+                message: "Product not found with id "+ req.params.id
+            })
+        }
+        return res.status(500).json({
+            message: "Error updating product with id " + req.params.id
+        });
+    })
 }
+
 
 //Delate Product
 const deleteProduct = (req, res) => {
