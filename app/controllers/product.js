@@ -53,7 +53,7 @@ const updateProduct = (req, res) => {
     });
 }
 
-//Update Product
+//Delate Product
 const deleteProduct = (req, res) => {
     Product.findByIdAndRemove(req.params.id, (err) => {
         if (err) return res.status(500).json(err);

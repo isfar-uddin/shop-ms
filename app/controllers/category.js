@@ -16,9 +16,39 @@ const addCategory = (req, res) => {
         Name: req.body.name,
     });
     newCategory.save().then(post => res.json(post));
-}  
+} 
+
+//Get Product Details Controller
+const categoryDetails = (req, res) => {
+    Category.findById(req.params.id)
+    .then(product=> res.json(product))
+    .catch(err=> res.status(404).json({err}))
+}
+
+//Update Category
+const updateCategory = (req, res) => {
+    console.log("LOCALHOST-------------------------------");
+    Category.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(category=> {
+        if(!category) {
+            return res.status(404).json({message: "Category not found with id "+ req.params.id})
+        }
+        res.json(category)
+    }).catch(err=> {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).json({
+                message: "Category not found with id "+ req.params.id
+            })
+        }
+        return res.status(500).json({
+            message: "Error updating category with id " + req.params.id
+        });
+    })
+}
 
 module.exports = {
     getAllCategory: getAllCategory,
-    addCategory: addCategory
+    addCategory: addCategory,
+    categoryDetails: categoryDetails,
+    updateCategory: updateCategory
 }
