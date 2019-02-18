@@ -1,9 +1,9 @@
 const express = require('express');
 
 const router = express.Router();
-const keys = require('../../config/keys');
+const keys = require('../config/keys');
 
-const categoryController = require('../../controllers/category'); 
+const categoryController = require('../controllers/category.controller');
 
 // @route GET api/categorys
 // @desc Get cagegorys

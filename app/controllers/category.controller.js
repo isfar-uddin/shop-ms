@@ -1,9 +1,9 @@
 // Load Product Modal
-const Category = require('../models/Category');
+const CategoryController = require('../models/category.model');
 
 //Get all category
 const getAllCategory = (req, res) => {
-    Category.find()
+    CategoryController.find()
     .sort({ date: -1})
     .then(category => res.json(category))
     .catch(err => res.status(404).json({noproductfound: "No Product Found"}))
@@ -11,7 +11,7 @@ const getAllCategory = (req, res) => {
 
 //Get all products Controller
 const addCategory = (req, res) => {
-    const newCategory = new Category({
+    const newCategory = new CategoryController({
         GroupName: req.body.group_name,
         Name: req.body.name,
     });
@@ -20,23 +20,23 @@ const addCategory = (req, res) => {
 
 //Get Product Details Controller
 const categoryDetails = (req, res) => {
-    Category.findById(req.params.id)
+    CategoryController.findById(req.params.id)
     .then(product=> res.json(product))
     .catch(err=> res.status(404).json({err}))
 }
 
-//Update Category
+//Update CategoryController
 const updateCategory = (req, res) => {
-    Category.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    CategoryController.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(category=> {
         if(!category) {
-            return res.status(404).json({message: "Category not found with id "+ req.params.id})
+            return res.status(404).json({message: "CategoryController not found with id "+ req.params.id})
         }
         res.json(category)
     }).catch(err=> {
         if(err.kind === 'ObjectId') {
             return res.status(404).json({
-                message: "Category not found with id "+ req.params.id
+                message: "CategoryController not found with id "+ req.params.id
             })
         }
         return res.status(500).json({
@@ -46,18 +46,18 @@ const updateCategory = (req, res) => {
 }
 
 const delateCategory = (req, res) => {
-    Category.findByIdAndRemove(req.params.id)
+    CategoryController.findByIdAndRemove(req.params.id)
     .then(category=> {
         if(!category) {
             return res.status(404).json({
-                message: "Category not found with id " + req.params.id
+                message: "CategoryController not found with id " + req.params.id
             })
         }
-        res.json({message: "Category deleted successfully!"})
+        res.json({message: "CategoryController deleted successfully!"})
     }).catch(err=> {
         if(err.kind === "ObjectId" || err.name=== "NotFound" ) {
             return res.status(404).json({
-                message: "Category not found with id " + req.params.id
+                message: "CategoryController not found with id " + req.params.id
             })
         }
         return res.status(500).json({

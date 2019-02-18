@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 //Load Product Route
-const Products = require('./app/routes/api/product');
+const Products = require('./app/routes/product.route');
 //Load Category Route
-const Category = require('./app/routes/api/category');
+const Category = require('./app/routes/category.route');
 
 const app = express();
 
