@@ -12,13 +12,9 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    Category : {
+    CategoryID : {
         type: Number,
         required: true, 
-    },
-    Quantity: {
-        type: Number,
-        required: true,
     },
     Brand: {
         type: String,
@@ -48,7 +44,7 @@ const ProductSchema = new Schema({
         type: Number,
     },
     Type: {
-        type: Number,
+        type: String,
     },
     Color: {
         type: String,
@@ -69,10 +65,10 @@ const ProductSchema = new Schema({
         type: String,
     },
     IsActive: {
-        type: Number,
+        type: Boolean,
     },
     IsRawProduct: {
-        type: Number,
+        type: Boolean,
     },
 })
 
