@@ -27,7 +27,6 @@ const categoryDetails = (req, res) => {
 
 //Update Category
 const updateCategory = (req, res) => {
-    console.log("LOCALHOST-------------------------------");
     Category.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(category=> {
         if(!category) {
