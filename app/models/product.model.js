@@ -70,6 +70,6 @@ const ProductSchema = new Schema({
     IsRawProduct: {
         type: Boolean,
     },
-})
+});
 
-module.exports = Product = mongoose.model("Product", ProductSchema)
+module.exports = mongoose.model("Product", ProductSchema);
