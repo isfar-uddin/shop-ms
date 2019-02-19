@@ -1,33 +1,33 @@
 const express = require('express');
 
 const router = express.Router();
-const keys = require('../config/keys');
+const keys = require('../config/config');
 
 const categoryController = require('../controllers/category.controller');
 
-// @route GET api/categorys
+// @route GET /categorys
 // @desc Get cagegorys
 // @access Private
 router.get("/", categoryController.getAllCategory);
 
 
-// @route POST api/categorys
+// @route POST /categorys
 // @desc POST category
 // @access Private
 router.post("/", categoryController.addCategory);
 
-// @route GET api/categorys/:id
+// @route GET /categorys/:id
 // @desc GET category details
 // @access Private
 router.get("/:id", categoryController.categoryDetails);
 
-// @route PUT api/categorys/:id
+// @route PUT /categorys/:id
 // @desc PUT Products Update
 // @access Private
 router.put("/:id", categoryController.updateCategory);
 
 
-// @route Delete api/category/:id
+// @route Delete /category/:id
 // @desc Delete category
 // @access Private
 router.delete("/:id", categoryController.delateCategory);

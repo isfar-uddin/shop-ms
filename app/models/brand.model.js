@@ -12,6 +12,6 @@ const GroupSchema = new Schema({
         type: String,
         required: true
     },
-})
+});
 
-module.exports = Group = mongoose.model("Group", GroupSchema)
+module.exports = mongoose.model("Brand", GroupSchema);

@@ -2,8 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+//Connect database
+const Connect = require('./app/config/db.connect');
+
 //Load Product Route
 const Products = require('./app/routes/product.route');
+
 //Load Category Route
 const Category = require('./app/routes/category.route');
 
@@ -13,20 +17,13 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//DB Config
-const db = require('./app/config/keys').mongoURI;
-
-//Connect to mongoose
-mongoose.connect(db, {useNewUrlParser: true})
-.then(() => console.log("Mongoose Connect") )
-.catch(err => console.log(err))
 
 
 //Use Product Routes
-app.use("/api/products", Products);
+app.use("/products", Products);
 
 //Use Category Routes
-app.use("/api/categorys", Category);
+app.use("/categories", Category);
 
 
 const port = process.env.PORT || 5000;
