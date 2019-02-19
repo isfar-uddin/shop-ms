@@ -11,4 +11,21 @@ const brandController = require('../controllers/brand.controller');
 router.get("/", brandController.getAllBrand);
 
 
+//@route POST /brand
+//@desc post brand
+//@access Private
+router.post('/', brandController.createBrand)
+
+
+
+//@route GET /brand/:id
+//@desc get brand details
+//@access Private
+router.get('/:id', brandController.brandDetails)
+
+
+
+
+
+
 module.exports = router;
