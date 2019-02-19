@@ -1,10 +1,10 @@
 const express = require('express');
 
 const router = express.Router();
-const keys = require('../../config/keys');
+const keys = require('../config/keys');
 
 //Load Product Controller
-const productController = require('../../controllers/product'); 
+const productController = require('../controllers/product.controller');
 
 // @route GET api/products
 // @desc Get Products
