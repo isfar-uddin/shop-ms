@@ -11,6 +11,9 @@ const Products = require('./app/routes/product.route');
 //Load Category Route
 const Category = require('./app/routes/category.route');
 
+//Load Brand Route
+const Brand = require('./app/routes/brand.route');
+
 const app = express();
 
 // Body parser middleware
@@ -24,6 +27,9 @@ app.use("/products", Products);
 
 //Use Category Routes
 app.use("/categories", Category);
+
+//Use Brand Routes
+app.use("/brands", Brand);
 
 
 const port = process.env.PORT || 5000;
