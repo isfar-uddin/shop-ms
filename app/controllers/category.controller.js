@@ -45,6 +45,8 @@ const updateCategory = (req, res) => {
     })
 };
 
+
+//Delete CategoryModel
 const delateCategory = (req, res) => {
     CategoryModel.findByIdAndRemove(req.params.id)
     .then(category=> {

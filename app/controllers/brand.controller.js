@@ -37,7 +37,7 @@ const editBrand = (req, res)=> {
             return res.status(404).json({message: "Brand not found with id"+ req.params.id})
         }
     }).catch(err=>{
-        if(err.kind == "ObjectId") {
+        if(err.kind === "ObjectId") {
             return res.status(404).json({
                 message: "Brand not found with id"+ req.params.id
             })
@@ -51,9 +51,34 @@ const editBrand = (req, res)=> {
 }
 
 
+//Delete brand
+const deleteBrand = (req, res)=> {
+    BrandModel.findByIdAndDelete(req.params.id)
+    .then(brand=>{
+        if(!brand){
+            return res.status(404).json({
+                message: "Brand not found with id "+ req.params.id
+            })
+        }
+        res.json({message: "Brand deleted successfully!"})
+    })
+    .catch(err=>{
+        if(err.kind === "ObjectId" || err.name=== "NotFound" ) {
+            return res.status(404).json({
+                message: "Brand not found with id " + req.params.id
+            })
+        }
+        return res.status(500).json({
+            message: "Could not delete Brand with id" + req.params.id
+        })
+    })
+}
+
+
 module.exports = {
     getAllBrand: getAllBrand,
     createBrand: createBrand,
     brandDetails: brandDetails,
-    editBrand: editBrand
+    editBrand: editBrand,
+    deleteBrand: deleteBrand
 }

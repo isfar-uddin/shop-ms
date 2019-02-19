@@ -30,6 +30,12 @@ router.get('/:id', brandController.brandDetails)
 router.put('/:id', brandController.editBrand)
 
 
+//@route DELETE /brand/:id
+//@desc Delete brand 
+//@access Private
+router.delete('/:id', brandController.deleteBrand)
+
+
 
 
 
