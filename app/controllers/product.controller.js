@@ -1,19 +1,19 @@
 
-// Load ProductController Modal
-const ProductController = require('../models/product.model');
+// Load ProductModel Modal
+const ProductModel = require('../models/product.model');
 
 
 //Get all products Controller
 const getAllProduct = (req, res) => {
-    ProductController.find()
+    ProductModel.find()
     .sort({ date: -1})
     .then(product => res.json(product))
-    .catch(err => res.status(404).json({noproductfound: "No ProductController Found"}))
-}
+    .catch(err => res.status(404).json({noproductfound: "No Product Found"}))
+};
 
 //Post product Controller
 const addProduct = (req, res) => {
-    const newProduct = new ProductController({
+    const newProduct = new ProductModel({
       Name: req.body.name,
       CategoryID: req.body.category_id,
       Brand: req.body.brand,
@@ -35,43 +35,43 @@ const addProduct = (req, res) => {
       IsRawProduct: req.body.is_raw_product,
     });
     newProduct.save().then(post => res.json(post));
-}
+};
 
-//Get ProductController Details Controller
+//Get ProductModel Details Controller
 const productDetails = (req, res) => {
-    ProductController.findById(req.params.id)
+    ProductModel.findById(req.params.id)
     .then(product=> res.json(product))
     .catch(err=> res.status(404).json({err}))
-}
+};
 
-//Update ProductController
+//Update ProductModel
 const updateProduct = (req, res) => {
-    ProductController.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    ProductModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(product=> {
         if(!product) {
-            return res.status(404).json({message: "ProductController not found with id "+ req.params.id})
+            return res.status(404).json({message: "Product not found with id "+ req.params.id})
         }
         res.json(product)
     }).catch(err=> {
         if(err.kind === 'ObjectId') {
             return res.status(404).json({
-                message: "ProductController not found with id "+ req.params.id
+                message: "Product not found with id "+ req.params.id
             })
         }
         return res.status(500).json({
             message: "Error updating product with id " + req.params.id
         });
     })
-}
+};
 
 
-//Delate ProductController
+//Delete ProductModel
 const deleteProduct = (req, res) => {
-    ProductController.findByIdAndRemove(req.params.id, (err) => {
+    ProductModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) return res.status(500).json(err);
         res.status(200).json({status: "success"})
     })
-}
+};
     
 module.exports = {
     getAllProduct: getAllProduct,
@@ -79,7 +79,7 @@ module.exports = {
     productDetails: productDetails,
     updateProduct: updateProduct,
     deleteProduct: deleteProduct
-}
+};
 
 
 
