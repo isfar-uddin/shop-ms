@@ -24,6 +24,12 @@ router.post('/', brandController.createBrand)
 router.get('/:id', brandController.brandDetails)
 
 
+//@route PUT /brand/:id
+//@desc Edit brand 
+//@access Private
+router.put('/:id', brandController.editBrand)
+
+
 
 
 
