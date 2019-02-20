@@ -8,6 +8,9 @@ const Products = require('./../routes/product.route');
 //Load Category Route
 const Category = require('./../routes/category.route');
 
+//Load Authentication Route
+const Signup = require('./../routes/auth/user.route');
+
 
 const initMiddleware = app => {
     // Body parser middleware
@@ -40,6 +43,9 @@ const initServerRoutes = app => {
 
     //Use Category Routes
     app.use("/categories", Category);
+
+    //Use Authentication Routes
+    app.use("/auth",Signup);
 };
 
 
