@@ -15,10 +15,10 @@ const UserSchema = new Schema({
         },
         trim:true
     },
-    userName:{
+    user_name:{
         type: String,
         unique: true,
-        required: [true, 'Password is required'],
+        required: [true, 'User name is required'],
         trim: true
     },
     password:{

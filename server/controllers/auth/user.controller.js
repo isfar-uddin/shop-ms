@@ -10,15 +10,16 @@ const signup = (req,res) => {
             });
         }else{
             const user = new User({
-                user_name:req.body.userName,
+                user_name:req.body.user_name,
                 email: req.body.email,
                 password:hash,
             });
 
             user.save().then((result) => {
-                console.log(result);
                 res.status(200).json({
-                    success: 'New user has been created'
+                    "id":result._id,
+                    "user_name":result.user_name,
+                    "email":result.email
                 });
             }).catch(error => {
                 res.status(500).json({error:error});
