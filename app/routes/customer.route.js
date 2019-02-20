@@ -16,6 +16,22 @@ router.get("/", customerController.getAllCustomer);
 // @access Private
 router.post("/", customerController.createCustomer);
 
+// @route GET /:id
+// @desc Create customer
+// @access Private
+router.get("/:id", customerController.customerDetails);
+
+
+// @route PUT /:id
+// @desc Update customer
+// @access Private
+router.put("/:id", customerController.updateCustomer);
+
+// @route DELETE /:id
+// @desc Delete customer
+// @access Private
+router.delete("/:id", customerController.deleteCustomer);
+
 
 
 
