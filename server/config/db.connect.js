@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 //DB Config
-const db = require('./config').mongoURI;
+const db = require('./db.config').mongoURI;
 
 //Connect to mongoose
 module.exports = mongoose.connect(db, {useNewUrlParser: true})
