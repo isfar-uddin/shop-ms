@@ -10,6 +10,11 @@ const Category = require('./../routes/category.route');
 
 //Load Authentication Route
 const Signup = require('./../routes/auth/user.route');
+//Load Customer Route
+const Customer = require('./../routes/customer.route');
+
+//Load Brand Route
+const Brand = require('./../routes/brand.route');
 
 
 const initMiddleware = app => {
@@ -46,6 +51,11 @@ const initServerRoutes = app => {
 
     //Use Authentication Routes
     app.use("/auth",Signup);
+    //Use Brand Routes
+    app.use("/brands", Brand);
+
+    //Use Customer Routes
+    app.use("/customers", Customer);
 };
 
 
