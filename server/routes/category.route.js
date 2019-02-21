@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const keys = require('../config/config');
+const keys = require('../config/db.config');
 
 const categoryController = require('../controllers/category.controller');
 

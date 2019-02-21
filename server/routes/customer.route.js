@@ -2,7 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-const keys = require('../config/config');
 
 const customerController = require('../controllers/customer.controller');
 
