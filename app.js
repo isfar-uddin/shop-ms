@@ -8,6 +8,12 @@ const Connect = require('./app/config/db.connect');
 //Load Product Route
 const Products = require('./app/routes/product.route');
 
+
+
+
+//Load Customer Route
+const Customer = require('./app/routes/customer.route');
+
 //Load Category Route
 const Category = require('./app/routes/category.route');
 
@@ -31,6 +37,12 @@ app.use("/categories", Category);
 //Use Brand Routes
 app.use("/brands", Brand);
 
+
+
+
+
+//Use Customer Routes
+app.use("/customers", Customer);
 
 const port = process.env.PORT || 5000;
 
