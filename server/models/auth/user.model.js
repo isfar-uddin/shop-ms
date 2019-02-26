@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+const jwt = require("jsonwebtoken");
+const {secretOrKey} = require('./../../config/db.config');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -27,5 +28,14 @@ const UserSchema = new Schema({
         required:[true, 'Password is required'],
     }
 });
+
+UserSchema.methods.generateAuthToken = () => {
+    let user = this;
+    console.log("Generate auth token");
+    jwt.sign({id:user._id},secretOrKey,{expiresIn:"24h"},(err,token)=>{
+        if(err) return {error:err};
+        return token.toString();
+    })
+};
 
 module.exports = mongoose.model('User',UserSchema);
