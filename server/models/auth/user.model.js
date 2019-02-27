@@ -31,6 +31,7 @@ const UserSchema = new Schema({
 
 UserSchema.methods.generateAuthToken = () => {
     let user = this;
+    console.log("User id:", user);
     return jwt.sign({id:user._id},secretOrKey,{expiresIn:86400});
 };
 
