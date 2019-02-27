@@ -16,15 +16,14 @@ const signup = (req,res) => {
             });
 
             user.save().then((result) => {
-                let token = user.generateAuthToken();
-                if(token.error) return {error:token.error};
                 return {
-                    result:result,
+                    id:result._id,
+                    user_name:result.user_name,
+                    email:result.email,
                     token:user.generateAuthToken()
                 };
-            }).then((result)=>{
-                if(result.error) return res.status(500).json({error:"Unable to create token"});
-                return res.status(200).json(result);
+            }).then((results)=>{
+                return res.status(200).json(results);
             }).catch(error => {
                 res.status(500).json({error:error});
             });
