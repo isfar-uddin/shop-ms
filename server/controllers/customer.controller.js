@@ -1,11 +1,14 @@
 // Load CustomerModel Modal
 const CustomerModel = require('../models/customer.model');
 
+// Messages
+const Messages = require('../constants/messages');
+
 // Get all customers 
 const getAllCustomer = (req, res) => {
     CustomerModel.find()
     .then(customers=> res.status(200).json(customers))
-    .catch(err=> res.status(404).json(err));
+    .catch(err=> res.status(404).json({error: "Customers "+ Messages.message_404}));
 }
 
 // Create new Customer
@@ -22,15 +25,15 @@ const createCustomer = (req, res) => {
     });
     newCustomer.save()
     .then(()=>res.status(200).json({message: "Customer create successfully"}) )
-    .catch(err=> res.status(404).json(err));
+    .catch(err=> res.status(404).json({error: "Customer not added "}));
 }
 
 
 // Customer details 
 const customerDetails = (req, res)=> {
     CustomerModel.findById(req.params.id)
-    .then(customer=> res.status(200).json(customer))
-    .catch(err=> res.status(404).json(err))
+    .then(customer=> res.status(200).json({result:customer, message: Messages.message_200}))
+    .catch(err=> res.status(404).json({error: "Customer "+ Messages.message_404}))
 }
 
 
@@ -39,21 +42,21 @@ const updateCustomer = (req, res)=> {
     CustomerModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(customer=> {
         if(!customer) {
-            return res.status(404)
+            return res.status(404).json({error: "Customer "+ Messages.message_404})
         .json({
-            message: "Customer not found with id"+ req.params.id
+            error: "Customer "+ Messages.message_404
         })
         }
-        res.status(200).json({message: "Customer update successfully" });
+        res.status(200).json({result: "Customer update successfully" });
     })
     .catch(err=> {
         if(err.kind === 'ObjectId') {
             return res.status(404).json({
-                message: "Customer not found with id "+ req.params.id
+                error: "Customer  "+ Messages.message_404
             })
         }
         return res.status(500).json({
-            message: "Error updating Customer with id " + req.params.id
+            error: "Customer " + Messages.message_500
         });
     })
 }
@@ -62,16 +65,16 @@ const updateCustomer = (req, res)=> {
 const deleteCustomer = (req, res)=> {
     CustomerModel.findByIdAndDelete(req.params.id)
     .then(()=> {
-        res.status(200).json({message: "Customer deleted successfully" });
+        res.status(200).json({result: "Customer deleted successfully"});
     })
     .catch(err=> {
         if(err.kind === 'ObjectId') {
             return res.status(404).json({
-                message: "Customer not found with id "+ req.params.id
+                error: "Customer "+ Messages.message_404
             })
         }
         return res.status(500).json({
-            message: "Error Delate Customer with id " + req.params.id
+            error: "Customer" + Messages.message_500
         });
     })
 }
