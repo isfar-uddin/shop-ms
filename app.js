@@ -18,7 +18,7 @@ let startServer = async () => {
     }
 };
 
-startServer();
+//startServer();
 
 module.exports = {
     startServer: startServer
