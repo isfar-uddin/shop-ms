@@ -43,7 +43,7 @@ const updateCategory = (req, res) => {
             return res.status(404).json({error: "Category "+ Messages.message_404})
         }
         return res.status(500).json({
-            error: Messages.
+            error: Messages.message_500
         });
     })
 };
