@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GET_ERRORS } from './types';
 
 export const registerUser = (user, history) => dispatch => {
-    axios.post('/api/users/register', user)
+    axios.post('/auth/register', user)
         .then(res => history.push('/login'))
         .catch(err => {
             dispatch({
